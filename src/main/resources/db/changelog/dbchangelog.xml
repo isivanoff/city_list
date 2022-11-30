@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create" author="ivan">
+        <createTable tableName="CITIES">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="ivan" id="import-data">
+        <loadData primaryKey="id"  encoding="UTF-8" file="db/data/cities.csv" quotchar="'" separator="," tableName="CITIES">
+        <column header="ID" name="id" type="NUMERIC"/>
+        <column header="NAME" name="name" type="STRING"/>
+        <column header="PHOTO" name="photo" type="VARCHAR"/>
+    </loadData>
+</changeSet>
+
+
+</databaseChangeLog>
