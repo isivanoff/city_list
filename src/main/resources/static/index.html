@@ -42,13 +42,13 @@
                     </div>
                     <div class="col input-group">
                         <form id="search_form">
-                        <div class="form-outline">
-                            <input id="search-input" type="search"  class="form-control"/>
-                            <label class="form-label" for="search-input">Search</label>
-                        </div>
-                        <button id="search-button" type="submit" class="btn btn-primary">
-                            <i class="fas fa-search"></i>
-                        </button>
+                            <div class="form-outline">
+                                <input id="search-input" type="search" class="form-control"/>
+                                <label class="form-label" for="search-input">Search</label>
+                            </div>
+                            <button id="search-button" type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -130,8 +130,6 @@
 </div>
 
 
-
-
 <!-- Modal -->
 <div class="modal fade" id="editName" tabindex="-1" aria-labelledby="editNameLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -150,8 +148,31 @@
                     <button type="submit" id="edit_name_button" class="btn btn-primary">Save changes</button>
 
                 </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="editPhoto" tabindex="-1" aria-labelledby="editPhoto" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editPhotoLabel">Edit Photo URL</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit_photo_form">
+                    <div class="mb-3">
+                        <label for="edit_photo" class="form-label">Photo URL</label>
+                        <input type="text" class="form-control" id="edit_photo"/>
+                    </div>
+                    <input type="hidden" id="cityPhotoId"/>
+                    <button type="submit" id="edit_photo_button" class="btn btn-primary">Save changes</button>
 
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

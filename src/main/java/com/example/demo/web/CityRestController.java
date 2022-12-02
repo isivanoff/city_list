@@ -1,6 +1,7 @@
 package com.example.demo.web;
 
 import com.example.demo.model.dto.CityNameDTO;
+import com.example.demo.model.dto.CityPhotoDTO;
 import com.example.demo.model.view.CityView;
 import com.example.demo.service.CityService;
 import jakarta.validation.Valid;
@@ -36,6 +37,17 @@ public class CityRestController {
             return ResponseEntity.badRequest().build();
         }
         if (cityService.updateName(city)) {
+            return ResponseEntity.ok(city);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/photo")
+    public ResponseEntity<CityPhotoDTO> updateName(@Valid @RequestBody CityPhotoDTO city, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (cityService.updatePhoto(city)) {
             return ResponseEntity.ok(city);
         }
         return ResponseEntity.notFound().build();
