@@ -2,13 +2,17 @@ $(document).ready(function () {
     $("#edit_name_form").on("submit", (ev) => updateName(ev));
     getCities($("#search-input").val());
 
-    $("#search-button").on("click", function () {
+    $("#search_form").on("submit", function (ev) {
+        ev.preventDefault();
         getCities($("#search-input").val());
     });
 
+    $(".btn-close, .modal-footer button").on("click", function(){
+            $("#edit_name").val("");
+            $("#cityNameId").val("");
+    });
+
 });
-
-
 
 function getCities(name, page = 0) {
     var requestOptions = {
@@ -44,15 +48,35 @@ function showCities(data) {
 function renderEditName(name, id) {
     $("#edit_name").val(name);
     $("#cityNameId").val(id);
-
 }
 
 function updateName(ev) {
     ev.preventDefault();
-    getCities($("#search-input").val());
-    console.log($("#edit_name").val());
-    console.log($("#cityNameId").val());
-    //TODO Add update name function
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "id": parseInt($("#cityNameId").val()),
+        "name": $("#edit_name").val()
+    });
+
+    var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:8080/cities/name", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            getCities($("#search-input").val());
+            $(".btn-close").trigger("click");
+        }
+        )
+
+        .catch(error => console.log('error', error));
+
 }
 
 function updateNav(data, name) {

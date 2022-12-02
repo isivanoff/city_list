@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,13 +41,15 @@
                         <h2>City List</h2>
                     </div>
                     <div class="col input-group">
+                        <form id="search_form">
                         <div class="form-outline">
                             <input id="search-input" type="search"  class="form-control"/>
                             <label class="form-label" for="search-input">Search</label>
                         </div>
-                        <button id="search-button" type="button" class="btn btn-primary">
+                        <button id="search-button" type="submit" class="btn btn-primary">
                             <i class="fas fa-search"></i>
                         </button>
+                        </form>
                     </div>
                 </div>
             </div>
