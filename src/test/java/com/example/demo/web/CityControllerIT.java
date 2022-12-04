@@ -40,7 +40,7 @@ public class CityControllerIT {
 
     @Test
     void testGetCities() throws Exception {
-        mockMvc.perform(get("/cities/all"))
+        mockMvc.perform(get("/cities"))
                 .andExpect(status().isOk());
     }
 

@@ -24,7 +24,7 @@ public class CityRestController {
         this.cityService = cityService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public ResponseEntity<Page<CityView>> getCities(@RequestParam(defaultValue = "") String name,
                                                     @PageableDefault(
                                                             sort = "name",

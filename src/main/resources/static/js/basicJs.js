@@ -21,7 +21,7 @@ function getCities(name, page = 0) {
         method: 'GET',
         redirect: 'follow'
     };
-    fetch(`http://localhost:8080/cities/all?name=${name}&page=${page}`, requestOptions)
+    fetch(`http://localhost:8080/cities?name=${name}&page=${page}`, requestOptions)
         .then(response => response.json())
         .then(result => {
             $("#city_body").html("");
