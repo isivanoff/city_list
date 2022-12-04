@@ -29,8 +29,8 @@ public class CityServiceTest {
     @Mock
     private CityRepository cityRepository;
 
-    CityService toTest;
-    City city;
+    private CityService toTest;
+    private City city;
 
     @BeforeEach
     void setUp() {
