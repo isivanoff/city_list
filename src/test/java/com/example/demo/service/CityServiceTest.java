@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -57,14 +58,14 @@ public class CityServiceTest {
     @Test
     void testUpdateNameByValidId() {
         when(cityRepository.findById(city.getId())).thenReturn(Optional.of(city));
-        Assertions.assertTrue(toTest.updateName(new CityNameDTO().setName("test").setId(1L)));
+        Assertions.assertEquals(toTest.updateName(new CityNameDTO().setName("test").setId(1L)).getName(), city.getName());
         verify(cityRepository).findById(1L);
     }
 
     @Test
     void testUpdateNameByInvalidID() {
         when(cityRepository.findById(any())).thenReturn(Optional.empty());
-        Assertions.assertFalse(toTest.updateName(new CityNameDTO().setName("test").setId(1L)));
+        Assertions.assertThrows(NoSuchElementException.class, () -> toTest.updateName(new CityNameDTO().setName("test").setId(1L)));
         verify(cityRepository).findById(1L);
     }
 

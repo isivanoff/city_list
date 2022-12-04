@@ -28,16 +28,14 @@ public class CityService {
                 .map(c -> modelMapper.map(c, CityView.class));
     }
 
-    public boolean updateName(CityNameDTO cityDTO) {
+    public CityNameDTO updateName(CityNameDTO cityDTO) {
         Optional<City> city = cityRepository.findById(cityDTO.getId());
 
-        if (city.isPresent()) {
-            cityRepository.save(city.get().setName(cityDTO.getName()));
-            return true;
-        }
+        cityRepository.save(city.get().setName(cityDTO.getName()));
 
-        return false;
+        return cityDTO;
     }
+
 
     public boolean updatePhoto(CityPhotoDTO cityDTO) {
         Optional<City> city = cityRepository.findById(cityDTO.getId());

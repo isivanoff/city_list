@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/cities")
 public class CityRestController {
@@ -36,10 +38,12 @@ public class CityRestController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
-        if (cityService.updateName(city)) {
-            return ResponseEntity.ok(city);
+        try {
+            return ResponseEntity.ok(cityService.updateName(city));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
     }
 
     @PutMapping("/photo")
