@@ -37,13 +37,10 @@ public class CityService {
     }
 
 
-    public boolean updatePhoto(CityPhotoDTO cityDTO) {
+    public CityPhotoDTO updatePhoto(CityPhotoDTO cityDTO) {
         Optional<City> city = cityRepository.findById(cityDTO.getId());
-
-        if (city.isPresent()) {
             cityRepository.save(city.get().setPhoto(cityDTO.getPhoto()));
-            return true;
-        }
-        return false;
+        return cityDTO;
+
     }
 }

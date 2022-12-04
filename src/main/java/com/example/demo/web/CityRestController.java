@@ -51,10 +51,11 @@ public class CityRestController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
-        if (cityService.updatePhoto(city)) {
-            return ResponseEntity.ok(city);
+        try {
+            return ResponseEntity.ok(cityService.updatePhoto(city));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
     }
 
 }

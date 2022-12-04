@@ -72,14 +72,14 @@ public class CityServiceTest {
     @Test
     void testUpdatePhotoByValidId() {
         when(cityRepository.findById(city.getId())).thenReturn(Optional.of(city));
-        Assertions.assertTrue(toTest.updatePhoto(new CityPhotoDTO().setPhoto("https://testphoto.com").setId(1L)));
+        Assertions.assertEquals(toTest.updatePhoto(new CityPhotoDTO().setPhoto("https://testphoto.com").setId(1L)).getPhoto(), city.getPhoto());
         verify(cityRepository).findById(1L);
     }
 
     @Test
     void testUpdatePhotoByInvalidID() {
         when(cityRepository.findById(city.getId())).thenReturn(Optional.empty());
-        Assertions.assertFalse(toTest.updatePhoto(new CityPhotoDTO().setPhoto("https://testphoto.com").setId(1L)));
+        Assertions.assertThrows(NoSuchElementException.class, () -> toTest.updatePhoto(new CityPhotoDTO().setPhoto("https://testphoto.com").setId(1L)));
         verify(cityRepository).findById(1L);
     }
 
